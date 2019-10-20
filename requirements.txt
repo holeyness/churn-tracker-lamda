@@ -1,0 +1,4 @@
+pynab-client
+datetime
+gspread
+oauth2client
