@@ -40,7 +40,8 @@ def update_balance():
 def update_last_charge(transactions_by_cc):
     column = worksheet.find("Last Charge").col
     for credit_card_id, transactions in transactions_by_cc.items():
-        latest_charge = max(transactions, key=lambda x: x.date).date
+        charges = list(filter(lambda t: t.amount < 0, transactions))
+        latest_charge = max(charges, key=lambda x: x.date).date
         latest_charge_as_string = latest_charge.strftime("%d %b %Y")
 
         print("Updating card " + credit_card_id + " latest charge: " + latest_charge_as_string)
